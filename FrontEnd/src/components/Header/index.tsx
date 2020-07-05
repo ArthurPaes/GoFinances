@@ -18,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
         <>
           <Link to="/">Listagem</Link>
           <Link to="/import">Importar</Link>
+          <Link to="/register">Cadastrar</Link>
         </>
       </nav>
     </header>
