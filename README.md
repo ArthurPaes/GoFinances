@@ -23,12 +23,12 @@
 
 - Clone this repo to your local machine using:
 ```shell
-$ git clone https://github.com/ArthurPaes/gofinances.git
+$ git clone https://github.com/ArthurPaes/GoFinances.git
 ```
 ### Setup
 > Enter the folder:
 ```shell
-$ cd gofinances
+$ cd GoFinances
 ```
 >Enter the back-end and install the dependecies using yarn:
 ```shell
