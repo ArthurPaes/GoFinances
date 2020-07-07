@@ -9,111 +9,108 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
- max-width: 1200px;
-form{
+  max-width: 1200px;
+  Form {
     background-color: white;
     padding: 64px;
     border-radius: 8px;
     background-origin: padding-box;
     max-width: 1200px;
     margin: 80px auto;
-}
+  }
 
-form h1{
+  form h1 {
     font-size: 36px;
+  }
 
-}
-
-form fieldset{
+  form fieldset {
     margin-top: 64px;
 
     border: 0;
-}
+  }
 
-form legend{
+  form legend {
     margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
+  }
 
-form legend h2{
-    font-size: 24px;
-}
+  form legend h2 {
+    font-size: 20px;
+  }
 
-form legend span{
+  form legend span {
     font-size: 14px;
     color: var(--title-color);
-}
+  }
 
-form .field {
+  form .field {
     flex: 1; /* preenche todo o espaço flex(espaço em branco)*/
     display: flex;
     flex-direction: column;
 
     margin-bottom: 24px;
-}
+  }
 
-form .field-group{
+  form .field-group {
     display: flex;
+  }
 
-}
-
-form input, form select{
+  form input,
+  form select {
     background-color: #f0f0f5;
     border: 0;
     padding: 16px 24px;
     font-size: 16px;
 
     border-radius: 8px;
+  }
 
-}
-
-form select{
+  form select {
     -webkit-appearance: none;
     -moz-appearance: none;
-     appearance: none;
-}
+    appearance: none;
+  }
 
-form label{
+  form label {
     font-size: 14px;
     margin-bottom: 8px;
-}
+  }
 
-form .field-group .field + .field{  /* pegar o field que tem um field ao lado(está pegando o segundo fielf, ou seja, o de número e complemento */
+  form .field-group .field + .field {
+    /* pegar o field que tem um field ao lado(está pegando o segundo fielf, ou seja, o de número e complemento */
     margin-left: 24px;
-}
+  }
 
-form button{
+  form button {
     width: 260px;
     height: 56px;
-
-    background-color: var(--primary-color);
+    background-color: #ff872c;
     border-radius: 8px;
     color: white;
     font-weight: bold;
     font-size: 16px;
-
+    margin-left: 760px;
     border: 0;
     margin-top: 40px;
     transition: background-color 400ms;
-}
+  }
 
-form button:hover{
-    background-color: #2fb86e;
+  form button:hover {
+    background-color: #ff540a;
+  }
 
-}
-
-.items-grid{
+  .items-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-     gap: 16px;  /*espaçamento entre os items*/
-}
+    gap: 16px; /*espaçamento entre os items*/
+  }
 
-.items-grid li{
+  .items-grid li {
     background-color: #f5f5f5;
-    list-style: none;   /* tira os bullets(padrão do li)*/
+    list-style: none; /* tira os bullets(padrão do li)*/
 
     border: 2px solid #f5f5f5;
     border-radius: 8px;
@@ -129,29 +126,27 @@ form button:hover{
     text-align: center;
 
     cursor: pointer;
-}
+  }
 
-.items-grid li span{
-    margin-top: 12px ;
+  .items-grid li span {
+    margin-top: 12px;
     flex: 1;
 
     display: flex;
     align-items: center;
 
     color: var(--title-color);
-}
+  }
 
-.items-grid li.selected{
+  .items-grid li.selected {
     background: #e1faec;
     border: 2px solid #34cb79;
-}
+  }
 
-.items-grid li img, .items-grid li span{
+  .items-grid li img,
+  .items-grid li span {
     pointer-events: none;
-}
-
-
-
+  }
 `;
 
 export const Title = styled.h1`

@@ -1,14 +1,23 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { Form } from '@unform/web';
 import filesize from 'filesize';
+import Input from './input/index';
 
-import { findByLabelText } from '@testing-library/react';
 import Header from '../../components/Header';
 import FileList from '../../components/FileList';
 import Upload from '../../components/Upload';
+import income from '../../assets/income.svg';
+import outcome from '../../assets/outcome.svg';
 
-import { Container, Title, ImportFileContainer, Footer, FormContainer } from './styles';
+import {
+  Container,
+  Title,
+  ImportFileContainer,
+  Footer,
+  FormContainer,
+} from './styles';
 
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
@@ -20,11 +29,10 @@ interface FileProps {
 }
 
 const Register: React.FC = () => {
-
-
-
-
-
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  function handleSubmit(data: object): void {
+    console.log(data);
+  }
 
   return (
     <>
@@ -32,65 +40,55 @@ const Register: React.FC = () => {
       <Container>
         <Title>Cadastrar uma transação</Title>
 
-          <FormContainer>
-          <form action="/savepoint" method="post">
-          <fieldset>
-            <legend>
-              <h2>Especifique os dados transação</h2>
-            </legend>
-            <div className="field-group">
-              <div  className="field">
-                <label htmlFor="city">Nome da transação</label>
-                <input type="text" name="city" required />
+        <FormContainer>
+          <Form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>
+                <h2>Especifique os dados transação</h2>
+              </legend>
+              <div className="field-group">
+                <div className="field">
+                  <label htmlFor="city">Nome da transação</label>
+                  <Input type="text" name="transaction" required />
+                </div>
+                <div className="field">
+                  <label htmlFor="name">Valor</label>
+                  <Input type="number" name="valor" placeholder="" required />
+                </div>
               </div>
-              <div className="field" >
-                <label htmlFor="name">Valor</label>
-                <input type="number" name="image" placeholder="" required />
+
+              <div className="field-group">
+                <div className="field">
+                  <label htmlFor="address">Categoria</label>
+                  <Input type="text" name="category" required />
+                </div>
+                <div className="field">
+                  <label htmlFor="address2">Data</label>
+                  <Input type="text" name="data" required />
+                </div>
               </div>
-            </div>
+            </fieldset>
 
-            <div className="field-group">
-            <div className="field">
-                <label htmlFor="address">Categoria</label>
-                <input type="text" name="address" required />
-            </div>
-            <div className="field">
-                <label htmlFor="address2">Data</label>
-                <input type="text" name="address2" required />
+            <fieldset>
+              <legend>
+                <h2>Tipo</h2>
+              </legend>
 
-            </div>
-            </div>
-          </fieldset>
+              <div className="items-grid">
+                <li data-id="Income">
+                  <img src={income} alt="Income" />
+                  <span>Income</span>
+                </li>
+                <li data-id="Outcome">
+                  <img src={outcome} alt="Pilhas e Baterias" />
+                  <span>Outcome</span>
+                </li>
+              </div>
+            </fieldset>
 
-          <fieldset>
-            <legend>
-              <h2>Tipo</h2>
-            </legend>
-
-            <div className="items-grid">
-            <li data-id="Income">
-                {/* <img src=" /icones/lampadas.svg" alt="Lampadas" /> */}
-                <span>Income</span>
-            </li>
-            <li data-id="Outcome">
-                {/* d<img src="/icones/baterias.svg" alt="Pilhas e Baterias" /> */}
-                <span>Outcome</span>
-            </li>
-            </div>
-          </fieldset>
-          </form>
-          </FormContainer>
-
-          <Footer>
-            <p>
-              <img src={alert} alt="Alert" />
-
-            </p>
-            <button  type="submit">
-              Cadastrar
-            </button>
-          </Footer>
-
+            <button type="submit">Cadastrar</button>
+          </Form>
+        </FormContainer>
       </Container>
     </>
   );
