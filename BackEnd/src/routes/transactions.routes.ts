@@ -11,6 +11,8 @@ import uploadConfig from '../config/upload';
 
 const upload = multer(uploadConfig);
 
+const data = {};
+
 const transactionsRouter = Router();
 
 transactionsRouter.get('/', async (request, response) => {

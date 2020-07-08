@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState,useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import filesize from 'filesize';
 import Input from './input/index';
+import Select from './select/index'
 
 import Header from '../../components/Header';
 import FileList from '../../components/FileList';
@@ -28,65 +29,69 @@ interface FileProps {
   readableSize: string;
 }
 
+interface RegisterFormData{
+  category: string;
+  title: string;
+  value: number;
+  type: 'income' | 'outcome';
+
+}
+
 const Register: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  function handleSubmit(data: object): void {
-    console.log(data);
-  }
+  const handleSubmit = useCallback(async (data: RegisterFormData) => {
+    try {
+      console.log(data)
+      await api.post('/transactions', data);
+      window.alert("Registered Successfully")
+
+    } catch (error) {
+      console.log(error)
+    }
+  },[])
 
   return (
     <>
       <Header size="small" />
       <Container>
-        <Title>Cadastrar uma transação</Title>
+        <Title>Register a transaction</Title>
 
         <FormContainer>
           <Form onSubmit={handleSubmit}>
             <fieldset>
               <legend>
-                <h2>Especifique os dados transação</h2>
+                <h2>Specify the transaction data</h2>
               </legend>
               <div className="field-group">
                 <div className="field">
-                  <label htmlFor="city">Nome da transação</label>
-                  <Input type="text" name="transaction" required />
+                  <label htmlFor="city">Transaction name</label>
+                  <Input type="text" name="title" required />
                 </div>
                 <div className="field">
-                  <label htmlFor="name">Valor</label>
-                  <Input type="number" name="valor" placeholder="" required />
+                  <label htmlFor="name">Value</label>
+                  <Input type="number" name="value" placeholder="" required />
                 </div>
               </div>
 
               <div className="field-group">
                 <div className="field">
-                  <label htmlFor="address">Categoria</label>
+                  <label htmlFor="address">Category</label>
                   <Input type="text" name="category" required />
                 </div>
                 <div className="field">
-                  <label htmlFor="address2">Data</label>
-                  <Input type="text" name="data" required />
+                  <label htmlFor="address2">Transaction type</label>
+                  <Select name="type"required>
+                    <option value="income">Income</option>
+                    <option value="outcome">Outcome</option>
+                   </Select>
+
                 </div>
               </div>
             </fieldset>
 
-            <fieldset>
-              <legend>
-                <h2>Tipo</h2>
-              </legend>
 
-              <div className="items-grid">
-                <li data-id="Income">
-                  <img src={income} alt="Income" />
-                  <span>Income</span>
-                </li>
-                <li data-id="Outcome">
-                  <img src={outcome} alt="Pilhas e Baterias" />
-                  <span>Outcome</span>
-                </li>
-              </div>
-            </fieldset>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit">Register</button>
           </Form>
         </FormContainer>
       </Container>
