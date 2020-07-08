@@ -51,7 +51,7 @@ $ yarn start
 ```
 
 ### In progress
-Insertion of register screen data into the database
+Toast messages
 
 
 
