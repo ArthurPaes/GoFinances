@@ -1,24 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState,useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import filesize from 'filesize';
+import { toast, ToastContainer} from 'react-toastify';
 import Input from './input/index';
-import Select from './select/index'
+import Select from './select/index';
 
 import Header from '../../components/Header';
-import FileList from '../../components/FileList';
-import Upload from '../../components/Upload';
-import income from '../../assets/income.svg';
-import outcome from '../../assets/outcome.svg';
 
-import {
-  Container,
-  Title,
-  ImportFileContainer,
-  Footer,
-  FormContainer,
-} from './styles';
+import { Container, Title, FormContainer } from './styles';
 
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
@@ -29,26 +20,25 @@ interface FileProps {
   readableSize: string;
 }
 
-interface RegisterFormData{
+interface RegisterFormData {
   category: string;
   title: string;
   value: number;
   type: 'income' | 'outcome';
-
 }
-
 const Register: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/ban-types
   const handleSubmit = useCallback(async (data: RegisterFormData) => {
     try {
-      console.log(data)
+      console.log(data);
+      // toast('Registered Successfully');
       await api.post('/transactions', data);
-      window.alert("Registered Successfully")
-
+      // window.alert("teste")
+      toast.success('Registered Successfully');
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  },[])
+  }, []);
 
   return (
     <>
@@ -69,7 +59,7 @@ const Register: React.FC = () => {
                 </div>
                 <div className="field">
                   <label htmlFor="name">Value</label>
-                  <Input type="number" name="value" placeholder="" required />
+                  <Input type="number" name="value" placeholder="" max="10000000000000000000000000000000000000000000000000000000" required  />
                 </div>
               </div>
 
@@ -80,16 +70,13 @@ const Register: React.FC = () => {
                 </div>
                 <div className="field">
                   <label htmlFor="address2">Transaction type</label>
-                  <Select name="type"required>
+                  <Select name="type" required>
                     <option value="income">Income</option>
                     <option value="outcome">Outcome</option>
-                   </Select>
-
+                  </Select>
                 </div>
               </div>
             </fieldset>
-
-
 
             <button type="submit">Register</button>
           </Form>
